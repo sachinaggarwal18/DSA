@@ -8,8 +8,6 @@ class Solution{
     vector<vector<string>> ans;
     vector<string> curr;
 
-    // vector<vector<string>> ans;  // Use std::string instead of int
-    //    vector<string> curr;
 bool isPalindrome(string s,int l,int r){
 
     while(l<r){
