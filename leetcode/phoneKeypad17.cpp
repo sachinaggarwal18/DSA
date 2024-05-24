@@ -42,12 +42,15 @@ public:
 
 int main() {
     Solution obj;
-    string digits = "23";
+    string digits = "72";
     vector<string> result = obj.letterCombinations(digits);
 
     cout << "Letter combinations for \"" << digits << "\":" << endl;
-    for (const string& combination : result) {
-        cout << combination << " ";
+    // for (const string& combination : result) {
+    //     cout << combination << " ";
+    // }
+    for(int i=0;i<result.size();i++){
+        cout<<result[i]<<",";
     }
     cout << endl;
 
