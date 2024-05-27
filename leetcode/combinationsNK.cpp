@@ -42,6 +42,12 @@ int main()
     cout << "Enter the value of k: ";
     cin >> k;
 
+    if (n < k)
+    {
+        cout << "Error!! Enter 'k' value less than 'n'" << endl;
+        return 1;
+    }
+
     vector<vector<int>> combinations = solution.combine(n, k);
 
     // Print the results
