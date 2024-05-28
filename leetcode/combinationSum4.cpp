@@ -27,10 +27,15 @@ public:
             return t[ind][target];
         }
 
-        int take = solve(0, nums, target - nums[ind]);
-        int notTake = solve(ind + 1, nums, target);
+        int result = 0;
 
-        return t[ind][target] = take + notTake;
+        for (int i = ind; i < n; i++)
+        {
+            int take = solve(0, nums, target - nums[i]);
+            result += take;
+        }
+
+        return t[ind][target] = result;
     }
 
     int combinationSum4(vector<int> &nums, int target)
