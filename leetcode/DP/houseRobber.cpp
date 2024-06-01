@@ -5,7 +5,7 @@ using namespace std;
 class Solution
 {
 public:
-    int solve(vector<int> &nums, int n)
+    int solve(vector<int> &nums, int n, vector<int> &dp)
     {
         // base case
         if (n >= nums.size())
@@ -13,20 +13,22 @@ public:
             return 0;
         }
 
-        if (n == nums.size() - 1)
+        if (dp[n] != -1)
         {
-            return nums[n];
+            return dp[n];
         }
 
-        int include = solve(nums, n + 2) + nums[n];
-        int exclude = solve(nums, n + 1) + 0;
+        int include = solve(nums, n + 2, dp) + nums[n];
+        int exclude = solve(nums, n + 1, dp);
 
-        return max(include, exclude);
+        dp[n] = max(include, exclude);
+        return dp[n];
     }
 
     int rob(vector<int> &nums)
     {
-        return solve(nums, 0);
+        vector<int> dp(nums.size(), -1);
+        return solve(nums, 0, dp);
     }
 };
 
