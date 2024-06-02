@@ -5,7 +5,7 @@ using namespace std;
 class Solution
 {
 public:
-    bool f(int i, int n, int k, vector<int> &a)
+    bool f(int i, int n, int k, vector<int> &a, vector<vector<int>> &dp)
     {
 
         if (k == 0)
@@ -19,18 +19,24 @@ public:
         }
         int take = 0, notTake = 0;
 
-        notTake = f(i + 1, n, k, a);
+        if (dp[i][k] != -1)
+        {
+            return dp[i][k];
+        }
+
+        notTake = f(i + 1, n, k, a, dp);
 
         if (a[i] <= k)
         {
-            take = f(i + 1, n, k - a[i], a);
+            take = f(i + 1, n, k - a[i], a, dp);
         }
-        return take || notTake;
+        return dp[i][k] = take || notTake;
     }
     bool subsetSumToK(int n, int k, vector<int> &arr)
     {
 
-        return f(0, n, k, arr);
+        vector<vector<int>> dp(n, vector<int>(k + 1, -1));
+        return f(0, n, k, arr, dp);
     }
 };
 
