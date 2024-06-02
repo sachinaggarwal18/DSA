@@ -5,38 +5,35 @@ using namespace std;
 class Solution
 {
 public:
-    bool f(int i, int n, int k, vector<int> &a, vector<vector<int>> &dp)
-    {
-
-        if (k == 0)
-        {
-            return true;
-        }
-
-        if (i >= n || k < 0)
-        {
-            return false;
-        }
-        int take = 0, notTake = 0;
-
-        if (dp[i][k] != -1)
-        {
-            return dp[i][k];
-        }
-
-        notTake = f(i + 1, n, k, a, dp);
-
-        if (a[i] <= k)
-        {
-            take = f(i + 1, n, k - a[i], a, dp);
-        }
-        return dp[i][k] = take || notTake;
-    }
     bool subsetSumToK(int n, int k, vector<int> &arr)
     {
+        vector<vector<bool>> dp(n + 1, vector<bool>(k + 1, 0));
 
-        vector<vector<int>> dp(n, vector<int>(k + 1, -1));
-        return f(0, n, k, arr, dp);
+        // Base case: A subset with sum 0 is always possible (empty subset)
+        for (int i = 0; i <= n; ++i)
+        {
+            dp[i][0] = true;
+        }
+
+        for (int i = 1; i <= n; ++i)
+        {
+            for (int j = 1; j <= k; ++j)
+            {
+                if (arr[i - 1] <= j)
+                {
+                    // Either include the current element or exclude it
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i - 1]];
+                }
+                else
+                {
+                    // Exclude the current element
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+
+        // The answer will be in dp[n][k]
+        return dp[n - 1][k];
     }
 };
 
