@@ -59,6 +59,35 @@ int tabulation(vector<int> &weight, vector<int> &value, int i, int maxWeight, ve
 
     return tabDp[n - 1][maxWeight];
 }
+
+int spaceOptimization(vector<int> &weight, vector<int> &value, int i, int maxWeight)
+{
+    int n = value.size();
+    vector<int> prev(maxWeight + 1, 0), curr(maxWeight + 1, 0);
+
+    for (int w = weight[0]; w <= maxWeight; w++)
+    {
+        prev[w] = value[0];
+    }
+
+    for (int i = 1; i < n; i++)
+    {
+        for (int w = weight[0]; w <= maxWeight; w++)
+        {
+            int exclude = prev[w];
+
+            int include = INT_MIN;
+            if (weight[i] <= w)
+            {
+                include = value[i] + prev[w - weight[i]];
+            }
+            curr[w] = max(include, exclude);
+        }
+        prev = curr;
+    }
+
+    return prev[maxWeight];
+}
 int main()
 {
     vector<int> value = {5, 4, 8, 6};
@@ -68,11 +97,14 @@ int main()
     vector<vector<int>> dp(n + 1, vector<int>(maxWeight + 1, -1));
     vector<vector<int>> tabDp(n + 1, vector<int>(maxWeight + 1, 0));
 
-    // int ans = knapsack(wt, value, n - 1, maxWeight, dp);
+    // int ans1 = knapsack(wt, value, n - 1, maxWeight, dp);
     // cout << "max profit: " << ans;
 
-    int tabAns = tabulation(wt, value, n - 1, maxWeight, tabDp);
-    cout << "max profit: " << tabAns;
+    // int ans2 = tabulation(wt, value, n - 1, maxWeight, tabDp);
+    // cout << "max profit: " << ans2;
+
+    int ans3 = spaceOptimization(wt, value, n - 1, maxWeight);
+    cout << "max profit: " << ans3;
 
     return 0;
 }
