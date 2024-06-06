@@ -1,19 +1,3 @@
-// #include <iostream>
-// #include <vector>
-// #include <algorithm>
-// using namespace std;
-
-// int main()
-// {
-
-//     char ch;
-//     cout << "Enter a character: ";
-//     cin >> ch;
-
-//     int ans = ch - 'a';
-//     cout << ch << ": " << ans;
-// }
-
 #include <iostream>
 #include <vector>
 #include <cctype>
@@ -22,59 +6,64 @@ using namespace std;
 
 void convertNumbersToCharacters()
 {
-    vector<int> numbers(4);
+    int n;
+    cout << "Enter the total no. of numbers: ";
+    cin >> n;
 
-    cout << "Enter 4 numbers: ";
-    for (int i = 0; i < 4; i++)
+    vector<int> num(n);
+    cout << "Enter numbers-" << endl;
+
+    for (int i = 0; i < n; i++)
     {
-        cin >> numbers[i];
+        cin >> num[i];
 
-        // Check if the input is within the valid ASCII range
-        if (numbers[i] < 0 || numbers[i] > 127)
+        if (num[i] < 0 || num[i] > 127)
         {
-            cout << "Input is Invalid" << endl;
+            cout << "Entered number is Invalid!! ";
             return;
         }
     }
 
-    cout << "Corresponding characters:" << endl;
-    for (int i = 0; i < 4; i++)
+    cout << "Numbers to Characters-" << endl;
+    for (int i = 0; i < n; i++)
     {
-        cout << numbers[i] << "-" << static_cast<char>(numbers[i]) << endl;
+        cout << num[i] << ": " << static_cast<char>(num[i]) << endl;
     }
 }
 
 void convertCharactersToNumbers()
 {
-    vector<char> characters(4);
 
-    cout << "Enter 4 characters: ";
-    for (int i = 0; i < 4; i++)
+    int n;
+    cout << "Enter the total no. of characters: ";
+    cin >> n;
+
+    vector<char> characters(n);
+    cout << "Enter characters-" << endl;
+
+    for (int i = 0; i < n; i++)
     {
         cin >> characters[i];
 
-        // Check if the input is a valid ASCII character
         if (!isprint(characters[i]))
         {
-            cout << "Input is Invalid" << endl;
+            cout << "Invalid Character!!: ";
             return;
         }
     }
 
-    cout << "Corresponding ASCII values:" << endl;
-    for (int i = 0; i < 4; i++)
+    cout << "Characters to Numbers-" << endl;
+    for (int i = 0; i < n; i++)
     {
-        cout << static_cast<int>(characters[i]) << "-" << characters[i] << endl;
+        cout << characters[i] << ": " << static_cast<int>(characters[i]) << endl;
     }
 }
 
 int main()
 {
     int choice;
-
-    cout << "Choose an option:" << endl;
-    cout << "1. Convert numbers to characters" << endl;
-    cout << "2. Convert characters to numbers" << endl;
+    cout << "1:To convert number to character: " << endl;
+    cout << "2:To convert character to number: " << endl;
     cin >> choice;
 
     if (choice == 1)
@@ -87,7 +76,7 @@ int main()
     }
     else
     {
-        cout << "Invalid choice" << endl;
+        cout << "Invalid choice!!";
     }
 
     return 0;
