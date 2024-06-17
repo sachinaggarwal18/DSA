@@ -5,6 +5,7 @@
         "string": "cpp",
         "unordered_map": "cpp",
         "ratio": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "algorithm": "cpp"
     }
 }
