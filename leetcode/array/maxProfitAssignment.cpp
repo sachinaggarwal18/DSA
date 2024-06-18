@@ -14,7 +14,6 @@ public:
 
         int n = difficulty.size();
         int m = worker.size();
-        sort(worker.begin(), worker.end(), greater<int>());
 
         priority_queue<pair<int, int>> pq;
         for (int i = 0; i < n; i++)
