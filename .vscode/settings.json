@@ -6,6 +6,7 @@
         "unordered_map": "cpp",
         "ratio": "cpp",
         "sstream": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "iosfwd": "cpp"
     }
 }
