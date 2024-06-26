@@ -38,8 +38,8 @@ int main()
     Solution solution;
 
     // Test case 1
-    vector<int> nums1 = {1, 1, 2, 1, 1};
-    int k1 = 3;
+    vector<int> nums1 = {2, 1, 2, 1};
+    int k1 = 1;
     cout << "Number of subarrays with exactly " << k1 << " odd numbers: " << solution.numberOfSubarrays(nums1, k1) << endl;
 
     // Test case 2
